@@ -1,6 +1,14 @@
 package com.example.movieapp.di
 
 import com.example.movieapp.domain.repository.GetMoviesDataRepository
+import com.example.movieapp.domain.use_case.local.add.AddMovieUseCase
+import com.example.movieapp.domain.use_case.local.add.DefaultAddMovieUseCase
+import com.example.movieapp.domain.use_case.local.delete.DefaultDeleteSavedMovieUseCase
+import com.example.movieapp.domain.use_case.local.delete.DeleteSavedMovieUseCase
+import com.example.movieapp.domain.use_case.local.get_list.DefaultGetSavedMoviesUseCase
+import com.example.movieapp.domain.use_case.local.get_list.GetSavedMoviesUseCase
+import com.example.movieapp.domain.use_case.local.get_movie.DefaultGetSavedMovieByIdUseCase
+import com.example.movieapp.domain.use_case.local.get_movie.GetSavedMovieByIdUseCase
 import com.example.movieapp.domain.use_case.remote.movie_info.DefaultGetMovieInfoUseCase
 import com.example.movieapp.domain.use_case.remote.movie_info.GetMovieInfoUseCase
 import com.example.movieapp.domain.use_case.remote.now_playing.DefaultGetNowPlayingMoviesDataUseCase
@@ -52,23 +60,23 @@ class DomainModule {
         repository: GetMoviesDataRepository,
     ): GetMovieInfoUseCase = DefaultGetMovieInfoUseCase(repository)
 
-//    @Provides
-//    fun provideAddNewMovie(
-//        repository: GetMoviesDataRepository,
-//    ): AddMovieUseCase = DefaultAddMovieUseCase(repository)
-//
-//    @Provides
-//    fun provideGDeleteSavedMovieUseCase(
-//        repository: GetMoviesDataRepository,
-//    ): DeleteSavedMovieUseCase = DefaultDeleteSavedMovieUseCase(repository)
-//
-//    @Provides
-//    fun provideGetSavedMoviesUseCase(
-//        repository: GetMoviesDataRepository,
-//    ): GetSavedMoviesUseCase = DefaultGetSavedMoviesUseCase(repository)
-//
-//    @Provides
-//    fun provideGetSavedMovieByIdUseCase(
-//        repository: GetMoviesDataRepository,
-//    ): GetSavedMovieByIdUseCase = DefaultGetSavedMovieByIdUseCase(repository)
+    @Provides
+    fun provideAddNewMovie(
+        repository: GetMoviesDataRepository,
+    ): AddMovieUseCase = DefaultAddMovieUseCase(repository)
+
+    @Provides
+    fun provideGDeleteSavedMovieUseCase(
+        repository: GetMoviesDataRepository,
+    ): DeleteSavedMovieUseCase = DefaultDeleteSavedMovieUseCase(repository)
+
+    @Provides
+    fun provideGetSavedMoviesUseCase(
+        repository: GetMoviesDataRepository,
+    ): GetSavedMoviesUseCase = DefaultGetSavedMoviesUseCase(repository)
+
+    @Provides
+    fun provideGetSavedMovieByIdUseCase(
+        repository: GetMoviesDataRepository,
+    ): GetSavedMovieByIdUseCase = DefaultGetSavedMovieByIdUseCase(repository)
 }

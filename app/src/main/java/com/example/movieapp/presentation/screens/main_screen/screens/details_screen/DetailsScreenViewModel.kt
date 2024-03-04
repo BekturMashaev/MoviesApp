@@ -3,8 +3,11 @@ package com.example.movieapp.presentation.screens.main_screen.screens.details_sc
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.movieapp.data.base.models.ResponseStatus
+import com.example.movieapp.domain.use_case.local.add.DefaultAddMovieUseCase
 import com.example.movieapp.domain.use_case.remote.movie_info.DefaultGetMovieInfoUseCase
+import com.example.movieapp.presentation.mappers.toDomain
 import com.example.movieapp.presentation.mappers.toUI
+import com.example.movieapp.presentation.models.movie_info.MovieInfoDataModelUI
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Dispatchers
@@ -19,23 +22,18 @@ import javax.inject.Inject
 @HiltViewModel
 class DetailsScreenViewModel @Inject constructor(
     private val getMovieInfoUseCase: DefaultGetMovieInfoUseCase,
+    private val addMovieToLibrary:DefaultAddMovieUseCase
 ) : ViewModel() {
     private val _uiState: MutableStateFlow<DetailsScreenUIState> =
         MutableStateFlow(DetailsScreenUIState.Loading)
     val uiState: StateFlow<DetailsScreenUIState> = _uiState.asStateFlow()
     private val handle = CoroutineExceptionHandler { _, throwable -> }
 
-//    fun addMovie(
-//        movieId: Int
-//    ) {
-//        val uiState = _uiState.value as? DetailsScreenUIState.Loaded ?: return
-//        viewModelScope.launch(handle + Dispatchers.IO) {
-//            addMovieUseCase.addNewMovie(uiState.movie.toDomain())
-//            val resaonf = getSavedMovieUseCase.getAllSavedMovies()
-//            Log.d("AAA", "redponde $resaonf")
-//        }
-//    }
-
+    fun addMovie(movie:MovieInfoDataModelUI){
+        viewModelScope.launch(handle + Dispatchers.IO) {
+            addMovieToLibrary.addNewMovie(movie.toDomain())
+        }
+    }
     fun getMovieInfo(
         movieId: Int,
     ) {

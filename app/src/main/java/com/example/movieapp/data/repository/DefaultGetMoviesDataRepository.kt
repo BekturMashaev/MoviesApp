@@ -2,17 +2,21 @@ package com.example.movieapp.data.repository
 
 import com.example.movieapp.data.base.BaseDataSource
 import com.example.movieapp.data.base.models.ResultStatus
+import com.example.movieapp.data.data_base.local.MoviesDAO
 import com.example.movieapp.data.data_base.remote.MoviesDataService
+import com.example.movieapp.data.mappers.toCache
 import com.example.movieapp.data.mappers.toDomain
 import com.example.movieapp.data.mappers.toDomainModel
 import com.example.movieapp.domain.models.movie_info.MovieInfoDataModelDomain
 import com.example.movieapp.domain.models.movie_list.MoviesListDomainModel
 import com.example.movieapp.domain.repository.GetMoviesDataRepository
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class DefaultGetMoviesDataRepository @Inject constructor(
     private val service: MoviesDataService,
-//    private val dao:MoviesDAO
+    private val dao: MoviesDAO
 ) : GetMoviesDataRepository, BaseDataSource() {
     override suspend fun getNowPlayingMovies(
     ): ResultStatus<MoviesListDomainModel> {
@@ -80,20 +84,20 @@ class DefaultGetMoviesDataRepository @Inject constructor(
 
     }
 
-//    override suspend fun addMovie(movieModelCache: MovieInfoDataModelDomain) {
-//        dao.addMovie(movieModelCache.toCache())
-//    }
-//
-//    override fun getAllSavedMovies(): Flow<List<MovieInfoDataModelDomain>> {
-//        return dao.getAllSavedMovies().map { it.map { it.toDomain() }}
-//    }
-//
-//    override suspend fun getMovieById(id: Int): MovieInfoDataModelDomain? {
-//        return dao.getMovieById(id)?.toDomain()
-//    }
-//
-//    override suspend fun deleteMovie(id: Int) {
-//        dao.deleteMovieById(id)
-//    }
+    override suspend fun addMovie(movieModelCache: MovieInfoDataModelDomain) {
+        dao.addMovie(movieModelCache.toCache())
+    }
+
+    override fun getAllSavedMovies(): Flow<List<MovieInfoDataModelDomain>> {
+        return dao.getAllSavedMovies().map { it.map { it.toDomain() }}
+    }
+
+    override suspend fun getMovieById(id: Int): MovieInfoDataModelDomain? {
+        return dao.getMovieById(id)?.toDomain()
+    }
+
+    override suspend fun deleteMovie(id: Int) {
+        dao.deleteMovieById(id)
+    }
 
 }

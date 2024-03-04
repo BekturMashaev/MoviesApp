@@ -51,7 +51,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.buildAnnotatedString
-import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
@@ -92,8 +91,7 @@ fun DetailsScreen(
     onGetMovieInfo: () -> Unit,
     onBackPressedCallback: () -> Unit,
     uiStateFlowMovie: DetailsScreenUIState,
-    onSaveButtonCallBack:(MovieInfoDataModelUI)->Unit,
-    modifier: Modifier = Modifier,
+    onSaveButtonCallBack: (MovieInfoDataModelUI) -> Unit,
 ) {
     val backStackDispatcher = LocalOnBackPressedDispatcherOwner.current
     backStackDispatcher?.onBackPressedDispatcher?.addCallback {
@@ -110,8 +108,9 @@ fun DetailsScreen(
             LoadedDetailsScreen(
                 uiStateFlowMovie.movie,
                 onBackPressedCallback = onBackPressedCallback,
-                onSaveButtonCallBack= {
-                    onSaveButtonCallBack(uiStateFlowMovie.movie)}
+                onSaveButtonCallBack = {
+                    onSaveButtonCallBack(uiStateFlowMovie.movie)
+                }
             )
         }
 

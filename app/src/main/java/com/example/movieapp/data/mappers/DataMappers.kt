@@ -1,5 +1,6 @@
 package com.example.movieapp.data.mappers
 
+import com.example.movieapp.data.data_base.local.models.MovieInfoDataModelCache
 import com.example.movieapp.data.models.movie_info.MovieInfoDataModel
 import com.example.movieapp.data.models.movie_list.MovieResultDataModel
 import com.example.movieapp.data.models.movie_list.MoviesListDataModel
@@ -48,48 +49,46 @@ fun MovieInfoDataModel.toDomain() = MovieInfoDataModelDomain(
 )
 
 /** from cache to domain **/
-//
-//fun MovieInfoDataModelDomain.toCache() = MovieInfoDataModelCache(
-//    adult = adult,
-//    backdropPath = backdropPath.orEmpty(),
-//    budget = budget,
-//    genres = genres,
-//    id = id,
-//    originalLanguage = originalLanguage,
-//    originalTitle = originalTitle,
-//    releaseDate = releaseDate,
-//    runtime = runtime,
-//    status = status,
-//    title = title,
-//    video = video,
-//    voteAverage = voteAverage,
-//    voteCount = voteCount,
-//    popularity = popularity,
-//    posterPath = posterPath,
-//    overview = overview,
-//    country = country,
-//)
-//
-///** from domain to cache **/
-//
-//fun MovieInfoDataModelCache.toDomain() = MovieInfoDataModelDomain(
-//    adult = adult,
-//    backdropPath = backdropPath.orEmpty(),
-//    budget = budget,
-//    genres = genres,
-//    id = id,
-//    originalLanguage = originalLanguage,
-//    originalTitle = originalTitle,
-//    releaseDate = releaseDate,
-//    runtime = runtime,
-//    status = status,
-//    title = title,
-//    video = video,
-//    voteAverage = voteAverage,
-//    voteCount = voteCount,
-//    popularity = popularity,
-//    posterPath = posterPath,
-//    overview = overview,
-//    country = country,
-//)
+
+fun MovieInfoDataModelDomain.toCache() = MovieInfoDataModelCache(
+    adult = adult,
+    backdropPath = backdropPath.orEmpty(),
+    budget = budget,
+    id = id,
+    originalLanguage = originalLanguage,
+    originalTitle = originalTitle,
+    releaseDate = releaseDate,
+    runtime = runtime,
+    status = status,
+    title = title,
+    video = video,
+    voteAverage = voteAverage,
+    voteCount = voteCount,
+    popularity = popularity,
+    posterPath = posterPath,
+    overview = overview,
+)
+
+/** from domain to cache **/
+
+fun MovieInfoDataModelCache.toDomain() = MovieInfoDataModelDomain(
+    adult = adult,
+    backdropPath = backdropPath.orEmpty(),
+    budget = budget,
+    genres = listOf(""),
+    id = id,
+    originalLanguage = originalLanguage,
+    originalTitle = originalTitle,
+    releaseDate = releaseDate,
+    runtime = runtime,
+    status = status,
+    title = title,
+    video = video,
+    voteAverage = voteAverage,
+    voteCount = voteCount,
+    popularity = popularity,
+    posterPath = posterPath,
+    overview = overview,
+    country = listOf(""),
+)
 
