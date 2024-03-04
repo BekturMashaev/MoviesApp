@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Movies App</string>
+    <string name="what_do_you_want_to_watch">What do you want to watch?</string>
+    <string name="app_title">Movies</string>
+    <string name="watch_txt">Read</string>
+    <string name="retry">try again</string>
+    // route
+    <string name="home_screen_route">home_screen</string>
+    <string name="splash_screen_route">splash_screen</string>
+    <string name="toprated_movies">TopRated Movies</string>
+    <string name="upcoming_movies">Upcoming Movies</string>
+    <string name="nowplaying_movies">NowPLaying Movies</string>
+    <string name="nothing">nothing :)</string>
+    <string name="search">Search</string>
+
+</resources>
